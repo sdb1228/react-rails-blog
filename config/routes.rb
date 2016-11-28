@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
-
-  get "/" => "home#index"
-
+  get '*route' => 'home#index', :except => [ :auth ]
+  root to: 'home#index'
 end

@@ -2,18 +2,55 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import template from './reducers'
+import templateReducers from './reducers'
 import App from './components/App'
+import About from './components/About'
+import page from 'page'
 
 require('styles/main.scss')
 
-let store = createStore(template)
+let store = createStore(templateReducers)
 
-const main = document.getElementById('content')
+page.base('/')
+page('/', showHistory)
+page('/extensions', showExtensions)
+page('/settings', showSettings)
+page('*', notfound)
+page()
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  main
-)
+function showHistory (ctx) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('content')
+  )
+}
+
+function showExtensions (ctx) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <About />
+    </Provider>,
+    document.getElementById('content')
+  )
+}
+
+function showSettings (ctx) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('content')
+  )
+}
+
+function notfound (ctx) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <About />
+    </Provider>,
+    document.getElementById('content')
+  )
+}
+
