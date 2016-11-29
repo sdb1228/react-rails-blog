@@ -5,7 +5,7 @@ export default class App extends Component {
     return (
       <div>
         <p> hello world </p>
-        <a href='/extensions'>here</a>
+        <a href='/About'>About</a>
       </div>
     )
   }

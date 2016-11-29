@@ -5,18 +5,28 @@ import { createStore } from 'redux'
 import templateReducers from './reducers'
 import App from './components/App'
 import About from './components/About'
+import PageError from './components/PageError'
 import page from 'page'
 
 require('styles/main.scss')
 
 let store = createStore(templateReducers)
 
-page.base('/')
-page('/', showHistory)
-page('/extensions', showExtensions)
+page('/', showRoot)
+page('/posts', showHistory)
+page('/about', showAbout)
 page('/settings', showSettings)
 page('*', notfound)
 page()
+
+function showRoot (ctx) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('content')
+  )
+}
 
 function showHistory (ctx) {
   ReactDOM.render(
@@ -27,7 +37,7 @@ function showHistory (ctx) {
   )
 }
 
-function showExtensions (ctx) {
+function showAbout (ctx) {
   ReactDOM.render(
     <Provider store={store}>
       <About />
@@ -48,7 +58,7 @@ function showSettings (ctx) {
 function notfound (ctx) {
   ReactDOM.render(
     <Provider store={store}>
-      <About />
+      <PageError />
     </Provider>,
     document.getElementById('content')
   )

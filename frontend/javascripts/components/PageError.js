@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class About extends Component {
+export default class PageError extends Component {
   render () {
     return (
       <div>
-        <p> About </p>
+        <p> ERROR GET OUT OF HERE</p>
       </div>
     )
   }
